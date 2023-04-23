@@ -45,13 +45,15 @@ public class NimRunner{
         }
     }
 
-    // public static int getXMove(int state){
-    //     //determine how many pieces on the board
-    //     //pass through this state and who's turn through minimax and determine if playerx or playery
-    //     //determine how many pieces you are taking
-    // }
+    public static int getXMove(int numPieces){
+        //return best move x could have - true because playerX turn 
+            //best move calls minimax
+        return bestMove(numPieces, true);
+    }
 
-    // public static int getYMove(state){
+    public static int getYMove(int numPieces){
+        //return bestMOve for player y - would this be return false to best move?
+        return bestMove(numPieces, false);
 
-    // }
+    }
 }
