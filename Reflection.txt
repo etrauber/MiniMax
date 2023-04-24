@@ -1,0 +1,11 @@
+Time and Space Inefficiency
+- branching factor exponeitally growing number of states to search
+- fact that you have to up to every base case then all the way back up - need to search every single node in tree and tree can be huge
+- start saving values for computer to regonize 
+    - recognizing similarites, trying to figure out patterns
+
+Games work bad on
+- multiple ppl can win 
+- not a two player game 
+- games with a massive braching factor
+- chess, super inefficient, bc huge amounts of branchs
