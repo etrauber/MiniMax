@@ -2,9 +2,22 @@ import java.util.*;
 public class NimRunner{
     //delcaring instance variables of player(true if player = x, false if not) and number of pieces on the pile (int)
     boolean player;
-    int numPieces;
-
     public static boolean runGame(){
+        int numPieces = 5;
+        while(numPieces > 0){
+            int xMove = getXMove(numPieces);
+            numPieces = numPieces - xMove;
+            if(numPieces == 0){
+                return false;
+            } else {
+              int yMove = getYMove(numPieces);
+                numPieces = numPieces - yMove;
+              if(numPieces == 0){
+                return true;
+              }  
+            }
+        }
+        //default return value
         return true;
     }
     
@@ -20,7 +33,10 @@ public class NimRunner{
                 int  score = minimax(numPieces-pieces,!turn);
                 //if the score = 1 (therefore > 0) - then this is the best move 
                     //if so, break the loop and return move = num of pieces that this iteration of the loop indicates
-                if(score > 0){
+                if(score > 0 && turn == true){
+                    move = pieces;
+                    break;
+                } else if (score < 0 && turn == false){
                     move = pieces;
                     break;
                 }
@@ -67,7 +83,8 @@ public class NimRunner{
     public static int getXMove(int numPieces){
         //return best move x could have - true because playerX turn 
             //best move calls minimax
-        return bestMove(numPieces, true);
+        return 1;
+        //bestMove(numPieces, true);
     }
 
     public static int getYMove(int numPieces){
