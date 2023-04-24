@@ -3,15 +3,17 @@ public class NimRunner{
     //delcaring instance variables of player(true if player = x, false if not) and number of pieces on the pile (int)
     boolean player;
     public static boolean runGame(){
-        int numPieces = 5;
+        int numPieces = 10;
         while(numPieces > 0){
             int xMove = getXMove(numPieces);
             numPieces = numPieces - xMove;
+            System.out.println("Player x move: " + xMove);
             if(numPieces == 0){
                 return false;
             } else {
               int yMove = getYMove(numPieces);
                 numPieces = numPieces - yMove;
+                System.out.println("Player y move: " + yMove);
               if(numPieces == 0){
                 return true;
               }  
@@ -46,9 +48,9 @@ public class NimRunner{
     }
 
     //method to determine which move will result in the best outcome 
-    public static int minimax(int numPieces, boolean myTurn){
-        //base case - if numPieces = 0
-        if(numPieces == 0){
+    public static int minimax(int state, boolean myTurn){
+        //base case - if state = 0
+        if(state == 0){
             //if no pieces left and it is not playerX turn, then playerX lost (means playerX took the last piece) - return -1
             if (myTurn == false){
                 return -1;
@@ -62,10 +64,11 @@ public class NimRunner{
             //loop to run 3 times, each time determining score for taking 1, 2, or 3 pieces off the pile 
             for(int pieces=1; pieces<=3; pieces++){
                 //as long as pieces is less than or equal to number of pieces on pile - can't take more pieces than pile has
-                if(pieces<=numPieces){
+                //no longer need to check if valid if change to general possibleMoves
+                if(pieces<=state){
                     //score = recalls minimax - in order to check if one move is good and find a score, need to determine if the sucessive moves after it will work
                         //recursive step to continue until hits base case
-                    int score = minimax(numPieces-pieces, !myTurn);
+                    int score = minimax(state-pieces, !myTurn);
                     //add score to list of scores - should end with 3 different scores
                     scores.add(score);
                 } 
@@ -83,13 +86,25 @@ public class NimRunner{
     public static int getXMove(int numPieces){
         //return best move x could have - true because playerX turn 
             //best move calls minimax
-        return 1;
-        //bestMove(numPieces, true);
+        //always return a valid move
+        return getUserMove(numPieces);
     }
 
     public static int getYMove(int numPieces){
         //return bestMOve for player y - would this be return false to best move?
         return bestMove(numPieces, false);
 
+    }
+
+    public static int getUserMove(int numPieces){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("There are " + numPieces + " pieces left. How many pieces would you like to take?");
+        int move = sc.nextInt();
+        if(move < numPieces){
+            return move;
+        } else {
+            System.out.println("Not a valid move! You lose!");
+            return 1;
+        }
     }
 }
