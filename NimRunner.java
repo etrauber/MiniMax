@@ -87,7 +87,7 @@ public class NimRunner{
         //return best move x could have - true because playerX turn 
             //best move calls minimax
         //always return a valid move
-        return getUserMove(numPieces);
+        return bestMove(numPieces, true);
     }
 
     public static int getYMove(int numPieces){
@@ -100,7 +100,7 @@ public class NimRunner{
         Scanner sc = new Scanner(System.in);
         System.out.println("There are " + numPieces + " pieces left. How many pieces would you like to take?");
         int move = sc.nextInt();
-        if(move < numPieces){
+        if(move <= numPieces && move <= 3){
             return move;
         } else {
             System.out.println("Not a valid move! You lose!");
