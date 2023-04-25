@@ -1,11 +1,27 @@
-Time and Space Inefficiency
-- branching factor exponeitally growing number of states to search
-- fact that you have to up to every base case then all the way back up - need to search every single node in tree and tree can be huge
-- start saving values for computer to regonize 
-    - recognizing similarites, trying to figure out patterns
+TIME AND SPACE INEFFICIENCIES
+Although this algorithm works for the test cases we have put in, there are a number of cases thst will highlight the time and space inefficiencies of the code. 
+As a result of the branching factor, as the number of pieces on the piles increases, the amount of states needed to check grows exponeitally. 
+Because we have to search every possible case for each state until it hits a base case, we essentially have to search every single node in the tree, and the tree can be any size. 
+As a result, if our code was used to play a game of chess, it would take hours, if not days to determine a best possible move, as there are countless states needed to test.  
 
-Games work bad on
-- multiple ppl can win 
-- not a two player game 
-- games with a massive braching factor
-- chess, super inefficient, bc huge amounts of branchs
+WILL THE BOT WIN EVERY TIME?
+The bot will not win every time the game is played. This results of the game are going to depend on which player has the first turn, and the amounr of pieces in the pile. 
+Depending on if the bot (playerX) or the user (playerY) has the first move, assuming they both use optimal strategy, who will win is dependent on who has the first turn and how many pieces there are. 
+For example, if there are 5 pieces on the board, the user who has the second turn will always lose because no matter the amount of pieces they take, as it must be 3 pieces of left, and subsequently, the next player can take the amount of pieces to leave one left on the pile, making the bot (playerX) take it and lose. 
+However, if there are 10 pieces on the board, playerX will win (having the first turn) because whether playerX takes 1, 2, or 3, pieces, playerY will use their optimal strategy to take any amount of pieces, allowing playerX to force playerY to take pieces off a pile with 5 pieces on their next move, ultimatley losing as in the example above. 
+Therefore, depending on the amount of pieces on the board, the bot may not always win.  
+
+HOW TO CHANGE THE GAME TO WORK FOR ANTI-NIM
+In order to change the game to work in the opposite manner, the logic of minimax would need to change. 
+The game would be able to use the same logic as the current minimax, recusivley calling itself until it hit a base case that would return 1 or -1. 
+However, lines 56 and 59 would need to be switched (as they are the base case), indicated a base case where if it is playerX turn and there are 0 pieces left, it now returns -1, as playerX has lost because playerY took the last piece, and vise versa. 
+As well, lines 12 and 18 in runGame should be changed as well. Currently, if playerX makes a move, resulting in 0 pieces to be left, the function returns false, indicating playerX lost. However, this should be changed to return true, because now this is the cirteria to win. This logic can also be applied to line 18 for playerY, in which it returns true if playerY took the last piece; however, this should be changed to false. 
+These lines can be foind in the NimRunner class. 
+Changing these lines should be able to evidently change the entire code as it will now have a different base case in minimax, which is called by bestMove, which is called by getXMove and getYMove, which are called in runGame (which is also slightly altered). 
+
+GAME NIM WOULD NOT WORK WELL ON
+Games that my algorithm would not work on include games that have multiple players and games that are not zero-sum. 
+However, something this algorithm should hypothetically work for, but would not work well on is chess. This is because of the branching factors. 
+As chess has many more pieces than Nim or simple Nim, the amount of nodes needed to be checked grows exponetially, to a point where this code will take hours if not days to spit out a best possible move. 
+This is because of the countless possible options resulting from a singular move, due to the different places each piece can move, and the amount of peices on the board. 
+While algorithm is good for creating Nim or simple Nim, it will not be the most efficient for complex cases with large amounts of branches. 
