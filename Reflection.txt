@@ -15,8 +15,8 @@ HOW TO CHANGE THE GAME TO WORK FOR ANTI-NIM
 In order to change the game to work in the opposite manner, the logic of minimax would need to change. 
 The game would be able to use the same logic as the current minimax, recusivley calling itself until it hit a base case that would return 1 or -1. 
 However, lines 56 and 59 would need to be switched (as they are the base case), indicated a base case where if it is playerX turn and there are 0 pieces left, it now returns -1, as playerX has lost because playerY took the last piece, and vise versa. 
-As well, lines 12 and 18 in runGame should be changed as well. Currently, if playerX makes a move, resulting in 0 pieces to be left, the function returns false, indicating playerX lost. However, this should be changed to return true, because now this is the cirteria to win. This logic can also be applied to line 18 for playerY, in which it returns true if playerY took the last piece; however, this should be changed to false. 
-These lines can be foind in the NimRunner class. 
+As well, lines 12 and 18 in runGame should be changed as well. Currently, if playerX makes a move, resulting in 0 pieces to be left, the function returns false, indicating playerX lost. However, this should be changed to return true, because now this is the cirteria to win. 
+This logic can also be applied to line 18 for playerY, in which it returns true if playerY took the last piece; however, this should be changed to false. These lines can be foind in the NimRunner class. 
 Changing these lines should be able to evidently change the entire code as it will now have a different base case in minimax, which is called by bestMove, which is called by getXMove and getYMove, which are called in runGame (which is also slightly altered). 
 
 GAME NIM WOULD NOT WORK WELL ON
