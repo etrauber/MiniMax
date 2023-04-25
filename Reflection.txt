@@ -1,15 +1,15 @@
-TIME AND SPACE INEFFICIENCIES
+1) TIME AND SPACE INEFFICIENCIES
 Although this algorithm works for the test cases we have put in, there are a number of cases that will highlight the time and space inefficiencies of the code. 
 Because of the branching factor, as the number of pieces on the piles increases, the amount of states needed to check grows exponeitally. 
 Since we have to search every possible case for each state until it hits a base case, we essentially have to search every single node in the tree, and the tree can be any size. 
 As a result, if our code was used to play a game of chess, for example, it would take hours, if not days to determine a best possible move, as there are countless states needed to test.  
 
-WILL THE BOT WIN EVERY TIME?
+2) WILL THE BOT WIN EVERY TIME?
 The bot will not win every time the game is played. 
 The results of the game are going to depend on which player has the first turn, and the amount of pieces in the pile. 
 While the bot does use optimal strategy, this does not ensure its victory in every case.   
 
-HOW TO CHANGE THE GAME TO WORK FOR ANTI-NIM
+3) HOW TO CHANGE THE GAME TO WORK FOR ANTI-NIM
 In order to change the game to work in the opposite manner, certain parts of minimax would need to change. 
 The game would be able to use the same logic as the current minimax, recusivley calling itself until it hit a base case that would return 1 or -1. 
 However, lines 84 and 86 would need to be switched (as they are the base case), indicated a base case where if it is playerX turn and there are 0 pieces left, it now returns -1, as playerY must have taken the last piece, and vise versa. 
@@ -17,7 +17,7 @@ As well, lines 25 and 39 in runGame should be changed. Currently, if playerX mak
 This logic can also be applied to line 39 for playerY, in which it returns true if playerY took the last piece; however, this should be changed to false. These lines can be foind in the NimRunner class. 
 Changing these lines should be able to evidently change the entire code as it will now have a different base case in minimax, which is called by bestMove, which is called by getXMove and getYMove, which are called in runGame (which is also slightly altered). 
 
-GAME NIM WOULD NOT WORK WELL ON
+4) GAME NIM WOULD NOT WORK WELL ON
 Games that the nim algorithm would not work on include games that have multiple players and games that are not zero-sum. 
 However, an example of a game that this algorithm should hypothetically work for, but would not work well on is chess. This is because of the branching factor. 
 As chess has many more pieces than Nim or simple Nim, the amount of nodes needed to be checked grows exponetially, to a point where this code will take hours if not days to spit out a best possible move. 
