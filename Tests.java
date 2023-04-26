@@ -19,6 +19,6 @@ public class Tests{
         System.out.println(NimRunner.bestMove(pieces,true));
         //pieces.add(3);
         //pieces.add(5);
-        System.out.println(NimRunner.runGame(pieces) == true);
+        System.out.println(NimRunner.runGame(pieces));
     }
 }
