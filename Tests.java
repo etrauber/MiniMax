@@ -11,7 +11,7 @@ public class Tests{
         pieces.add(1);
         pieces.add(3);
         //System.out.println(NimRunner.getXMove(pieces));
-        //adding in piled to have [1,3,5,7]
+        //adding in piles to have [1,3,5,7]
         pieces.add(5);
         pieces.add(7);
         //should return -1
