@@ -2,9 +2,9 @@ import java.util.*;
 public class NimRunner{
     public static void main(String[] args){
         ArrayList<Integer> piles = new ArrayList<>();
+        piles.add(2);
         piles.add(1);
-        piles.add(3);
-        piles.add(5);
+        piles.add(0);
         if(runGame(piles)){
             System.out.println("PlayerX wins");
         } else {
@@ -37,7 +37,7 @@ public class NimRunner{
             //if still pieces left after x turn - move onto y turn
             } else {
                 //initalize empty arraylist for y move
-                ArrayList<Integer> yMove = getUserMove(numPieces);
+                ArrayList<Integer> yMove = getYMove(numPieces);
                 System.out.println("Player Y's move is: " + yMove);
                 //for loop to loop through yMove and determine at what index the pieces are being subtracted
                 for(int y=0; y<yMove.size(); y++){
